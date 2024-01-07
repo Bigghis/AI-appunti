@@ -27,14 +27,14 @@ plt.subplot(121)
 plt.hist(x.view(-1).tolist(), 50, density=True)
 ```
 
-![hist1](../images/gauss2.png)  
+![hist1](../../images/gauss2.png)  
 
 e dei dati di y, dopo l'attivazione, cioè dopo la moltiplicazione per i pesi:
 ```py
 plt.subplot(122)
 plt.hist(y.view(-1).tolist(), 50, density=True)
 ```
-![hist1](../images/nogauss1.png)  
+![hist1](../../images/nogauss1.png)  
 
 Che sembra di forma gaussiana ma NON lo è, perché è decentrata e ripida!
 
@@ -51,7 +51,7 @@ W = torch.randn(10, 200) / 10**0.5
 print(y.mean(), y.std())
 # tensor(0.0044) tensor(1.0029)
 ```
-![hist1](../images/gauss3.png) 
+![hist1](../../images/gauss3.png) 
 
 y distribuita come una gaussiana normale ;)
 

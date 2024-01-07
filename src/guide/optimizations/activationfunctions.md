@@ -2,10 +2,10 @@
 
 Abbiamo visto che una funzione di attivazione come tanh() può **saturare** facilmente, può
 cioè produrre molti valori estremi -1 e +1:  
-![hist1](../images/hist1.png)  
+![hist1](../../images/hist1.png)  
 
 quando i valori di **h** dati in input a tanh() sono del tipo:  
-![hist2](../images/hist2.png)  
+![hist2](../../images/hist2.png)  
 cioè creano una distribuzione molto larga.
 
 Questa **saturazione** implica che i neuroni in questo stato vengono allenati meno, aggiornano di rado i loro pesi.  
@@ -40,6 +40,6 @@ plt.figure(figsize=(20, 10))
 plt.imshow(boolean_tensor, cmap="gray", interpolation="nearest")
 ```
 
-![hist2](../images/imshow2.png) 
+![hist2](../../images/imshow2.png) 
 
 

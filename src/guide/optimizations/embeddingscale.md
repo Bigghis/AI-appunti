@@ -12,7 +12,7 @@ for i in range(C.shape[0]):
 plt.grid('minor')
 ```
 
-![Neural Network](../images/embeddings.png)
+![Neural Network](../../images/embeddings.png)
 
 Per aumentare le dimensioni della lookup table, es da 2 a 10, facciamo, partendo dalla definizione della lookup table a 2 dimensioni:
 ```py

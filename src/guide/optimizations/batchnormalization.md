@@ -16,7 +16,7 @@ Vorremmo, cioè, che hpreact sia una **distribuzione gaussiana uniforme**, come 
 Quindi lo scopo è **normalizzare gli stati di preattivazione degli hidden layer** per renderli distribuzioni gaussiane,
 attraverso l'applicazione di un algoritmo di normalizzazione chiamato **batch normalization**.
 
-![hist1](../images/batchnorm1.png)  
+![hist1](../../images/batchnorm1.png)  
 
 Per prima cosa calcoliamo la **media** e la **deviazione standard** di hpreact,
 poi **normalizziamo**: sottraendo la media da hpreact e dividendo il tutto per la deviazione standard, con l'aggiunta di un piccolo epsilon,

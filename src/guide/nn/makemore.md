@@ -9,7 +9,7 @@ Per la definizione di rete neurale, i neuroni dello stesso layer non comunicano 
 Ogni neurone è completamente connesso al neurone del layer successivo, per cui l'uscita di un neurone
 vanno in ingresso di tutti i neuroni del layer successivo.
 
-![Neural Network](../images/1.png)
+![Neural Network](../../images/1.png)
 
 Pensando di voler implementare le rete makemore, 27 caratteri dell'alfabeto codificati in lookup table (embeddings),
 rete che accetta sequenze di 3 caratteri in input per produrre un quarto carattere in output, possiamo procedere così:  
