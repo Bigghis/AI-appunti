@@ -1,13 +1,9 @@
-# mdbook-template
+# Introduction
 
-Yield a mdbook demo with [mdbook-theme](https://github.com/zjp-CN/mdbook-theme)
-and a yml file for github action automation and page publication.
+These notes are the result of studying the excellent work of [Andrej Karpathy](https://karpathy.ai/)'s course [Neural Networks: from zero to hero](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ).  
 
-You just need to creat md files in `src/` dir, then add the filenames in `SUMMARY.md`,
-and everything is ready to go.
+Only in Italian language for now and still work in progress!
 
-But for the first time after pushing to github, set the source of github page to 
-`gh-pages` branch and `/(root)` in `Settings`.
 
-Have fun with mdbook!
+
 
