@@ -7,7 +7,7 @@ per poter applicare la chain rule in modo semplice.
 
 Esempio:  Consideriamo la seguente funzione:
 
-![fun12](../../images/fun12.png) 
+![fun12](../images/fun12.png) 
 
 Vogliamo calcolarne i gradienti per gli input: **x=3**, **y=-4**.
 

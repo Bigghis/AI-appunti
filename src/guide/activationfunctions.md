@@ -2,7 +2,7 @@
 
 Alcune delle più note funzioni di attivazione:
 
-![Neural Network](../../images/activatingFunctions2.png)
+![Neural Network](../images/activatingFunctions2.png)
 
 Queste funzioni "schiacciano" i valori in uscita, es. **tanh()** schiaccia i valori, portandoli verso -1 e +1.
 
@@ -28,7 +28,7 @@ h.view(-1).tolist()
 plt.hist(h.view(-1).tolist(), 50)
 plt.show()
 ```
-![hist1](../../images/hist1.png)
+![hist1](../images/hist1.png)
 
 Si vede l'effetto di schiacciamento di **tanh()**. Molti valori valgono -1 e +1 e pochissimi sono nel mezzo.  
 Questo perché i valori dati in input alla tanh(),sono nel vettore **preact**, che ha una forma del tipo:
@@ -36,7 +36,7 @@ Questo perché i valori dati in input alla tanh(),sono nel vettore **preact**, c
 plt.hist(preact, 50)
 plt.show()
 ```
-![hist2](../../images/hist2.png)
+![hist2](../images/hist2.png)
 
 che è molto larga, va da [-20, +20] e quindi produrrà molti valori -1, +1 eseguendo tanh()
 
@@ -65,7 +65,7 @@ plt.imshow(boolean_tensor, cmap="gray", interpolation="nearest")
 avremo 32 righe, i samples di input, e 200 colonne, cioè i neuroni.
 i punti bianchi indicano valore VERO, i neri FALSO.
 
-![imshow](../../images/imshow1.png)
+![imshow](../images/imshow1.png)
 
 le zone bianche indicano neuroni molto attivi, che spiaccicano le uscite verso -1, +1, ammazzando i gradienti durante la backpropagation.  
 Se un'ìntera colonna è bianca, si dice che siamo in presenza di un **dead neuron**, in quanto nessun possibile input, riesce ad attivare il neurone,

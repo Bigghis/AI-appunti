@@ -162,4 +162,4 @@ plt.plot(t.view(-1, 1000).mean(1))
 
 che mostra chiaramente l'effetto del learning rate:
 
-![hist1](../../images/lr_decay.png) 
+![hist1](../images/lr_decay.png) 

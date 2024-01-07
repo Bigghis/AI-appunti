@@ -208,7 +208,7 @@ torch.Size([2, 2, 1])
 
 Vengono moltiplicati gli elementi della riga del primo tensore per l'elemento corrispondente della colonna del secondo tensore. Poi i prodotti vengono sommati tra di loro.
 
-![hist1](../../images/mm.png)  
+![hist1](../images/mm.png)  
 Per effettuare la moltiplicazione tra 2 tensori è fondamentale che 
 l'ultima dimensione del primo tensore sia **uguale** alla prima dimensione del secondo tensore!  
 

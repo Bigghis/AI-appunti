@@ -23,10 +23,10 @@ Esempi
 
 #### moltiplicazione
 Consideriamo una f(x) semplicissima che moltiplica due variabili:  
-![der2](../../images/der1.png)  
+![der2](../images/der1.png)  
 
 e le derivate di f(x) rispetto a queste due variabili:  
-![der3](../../images/der3.png)  
+![der3](../images/der3.png)  
 
 Se, per esempio, **x=4** e **y =-5**, per cui **f(x, y) = xy = -20**.  
 la derivata della f(x) rispetto alla variabile x è **-5**.  
@@ -42,10 +42,10 @@ Quindi per quei valori di x e y, avremo i seguenti gradienti: **x.grad = -5**, *
 #### addizione
 
 funzione che somma due variabili:  
-![der4](../../images/der4.png)  
+![der4](../images/der4.png)  
 
 le derivate di f(x) rispetto a queste due variabili sono:  
-![der5](../../images/der5.png)  
+![der5](../images/der5.png)  
 
 Se, per esempio, **x=5** e **y =3**, per cui **f(x, y) = x + y = 8**. 
 Vuol dire che se aumento x di una quantità h infinitesimale, in output avrò lo stesso valore x aumentato di quella piccola quantità h e poi verrà fatta addizione con y.  
@@ -60,10 +60,10 @@ Vuol dire che il gradiente x è 1 e il gradiente di y è 1.
 #### funzione max
 
 funzione che trova il massimo tra due variabili:  
-![der6](../../images/der6.png)  
+![der6](../images/der6.png)  
 
 le derivate di f(x) rispetto a queste due variabili sono:  
-![der7](../../images/der7.png) 
+![der7](../images/der7.png) 
 
 Se, per esempio, consideriamo **x=4** e **y =2**, per cui **max(x, y) = x = 4**.  
 Ora se aumento x di una quantità infinitesimale h, in output avrò la stessa quantità x aumentata della piccola quantità h.  
@@ -75,21 +75,21 @@ Quindi, per i valori x=4 e y=2, abbiamo= **x.grad=1**, **y.grad=0**.
 
 Consideriamo funzioni più complesse, come, ad esempio:
 
-![der8](../../images/der8.png) 
+![der8](../images/der8.png) 
 
 Questa può essere scomposta nelle più semplici:  
 **q = x + y** e **f = qz**
 
 e sappiamo derivarle per poi calcolarne i gradienti:  
 
-![der10](../../images/der10.png)   
-![der9](../../images/der9.png)  
+![der10](../images/der10.png)   
+![der9](../images/der9.png)  
 
 Tuttavia ci interessa conoscere i gradienti di *f*, rispetto alle variabili *x*, *y*, *z*.  
 Fortunatamente la **chain rule** ci assicura che basta moltiplicare la derivate parziali intermedie, per calcolare il valore dei gradienti.  
 
 La derivata parziale di *f(x, y, z)* rispetto a *x* è:  
-![der11](../../images/der11.png) 
+![der11](../images/der11.png) 
 
 esempio:  
 ```py
@@ -115,7 +115,7 @@ dfdy = dfdq * dqdy
 Sempre per lo stesso esempio, graficamente abbiamo:  
 in verde i valori del forward pass, in rosso i gradienti calcolati durante il backward pass applicando la chain rule, a partire dall'output verso gli input (**backpropagation**)
 
-![der12](../../images/der12.png) 
+![der12](../images/der12.png) 
 
 la **backpropagation** è un processo **locale**, difatti ogni **gate** (porta) della rete prende in ingresso degli input e da questi possiamo calcolare:
 * l'**output del gate** (forward pass) 
@@ -137,7 +137,7 @@ gradiente locale = per z = 3; per q = -4
 Applicando la chain rule è chiaro che questi gradienti locali vengono moltiplicati tra di loro e propagati all'indietro.
 Difatti al momento siamo in questa situazione:  
 
-![der13](../../images/der13.png) 
+![der13](../images/der13.png) 
 
 i gradienti segnati sono definitivi.  
 Per calcolare il gradiente definitivo di x e y, applichiamo la chain rule:  
@@ -148,7 +148,7 @@ Quindi:
 
 e avremo il grafico di sopra, con tutti i gradienti definitivi segnati.
 
-![der12](../../images/der12.png) 
+![der12](../images/der12.png) 
 
 Notiamo che, per ottenere **-12** in output della rete, il gate che fa la moltiplicazione **richiede** 
 al suo input q di **ridursi di 4 volte** e richiede al suo input z di **aumentare di 3 volte**.  
@@ -166,16 +166,16 @@ Alcune semplici funzioni hanno effetti ben noti durante la backpropagation:
 
 * **somma**: distribuisce equamente il gradiente ai suoi input, copiandolo  
 
-    ![der15](../../images/der15.jpg) 
+    ![der15](../images/der15.jpg) 
 
 * **moltiplicazione**: swappa i suoi input e li moltiplica per il gradiente: 
 
-    ![der16](../../images/der16.png) 
+    ![der16](../images/der16.png) 
 
 
 * **max()**: distribuisce il gradiente, copiandolo, solo al suo input maggiore (**routing**):  
 
-    ![der15](../../images/der17.png) 
+    ![der15](../images/der17.png) 
 
 
 ### Gradienti in operazioni vettoriali

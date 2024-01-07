@@ -4,7 +4,7 @@ Vogliamo creare una rete che, come visto finora, determina il prossimo carattere
 Useremo un tipo di rete (deepmind wavenet) in cui vengono fusi i due elementi adiacenti dei suoi hidden layer.  
 L'insieme dei due elementi adiacenti concorre alla scelta del prossimo carattere che farà parte del layer successivo.  
 
-![wavenet1](../../images/wavenet1.png)  
+![wavenet1](../images/wavenet1.png)  
 
 La **convoluzione** ha l'effetto simile a quello di un ciclo for, usato per determinare in parallelo gli output (pallini arancio). 
 Ogni hidden layer di una rete convoluzionale è una sorta di filtro che facciamo scorrere lungo la sequenza dei dati in input.  

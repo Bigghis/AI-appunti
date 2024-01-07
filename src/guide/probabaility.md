@@ -24,7 +24,7 @@ E' di forma simmetrica attorno alla media.
 Numericamente ha una media pari a zero ed una deviazione standard pari a 1.  
 La deviazione standard di una distribuzione gaussiana misura la ripidità della forma a campana.  
 
-![hist1](../../images/gauss1.png)  
+![hist1](../images/gauss1.png)  
 
 
 

@@ -3,7 +3,7 @@
 Durante il primo training dei dati è possibile che il valore del loss, calcolato durante la prima iterazione, sia **molto maggiore**
 di quelli calcolati nelle successive iterazioni.
 
-![Neural Network](../../images/2.png)
+![Neural Network](../images/2.png)
 
 Nel grafico è mostrato l'andamento del **log10(loss)**, si vede la classica forma a "mazza da hockey",  con il valore del loss che nella prima iterazione è 26 (circa 1.4 nel caso del log10()), contro i circa 3 delle altre iterazioni.
 

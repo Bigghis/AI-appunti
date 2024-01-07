@@ -13,7 +13,7 @@ Funzione definita mediante **polinomio di primo grado** f(x) = xa +b, il cui gra
 Funzione definita mediante **polinomio di grado superiore al primo**, il cui grafico non è rappresentabile con una retta.
 
 #### Derivata di una funzione *f'(x)*  
-![hist1](../../images/der0.png)   
+![hist1](../images/der0.png)   
 Rappresenta il tasso di incremento/decremento di una funzione *f(x)* rispetto ad una variabile *x*; misura, cioè, di quanto cambia il valore della funzione al variare di un suo argomento *x*.  Per effettuare tale misura si considera una variazione *h* molto piccola, **infinitesimale**.  
 
 Si dice anche che la derivata misura la crescita/decrescita che avrebbe *f(x)* in uno specifico punto, spostandosi di pochissimo rispetto al punto considerato, o, se vogliamo,
