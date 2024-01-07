@@ -19,19 +19,19 @@ for i, layer in enumerate(layers[:-1]): # note: exclude the output layer
 plt.legend(legends);
 plt.title('activation distribution in the forward pass')
 ```
-#### Considerazioni
-* esempio 1, gain = 5/3
+### Considerazioni
+#### Esempio 1, gain = 5/3
 ![hist1](../../images/forward1.png)  
 
 Si nota l'alta saturazione del layer1, poi gli altri layer più interni vanno leggermente stabilizzandosi.   
 
 
-* esempio 2, gain = 1 (no gain)
+#### Esempio 2, gain = 1 (no gain)
 ![hist2](../../images/forward2.png)  
 
 I layer tendono a restringere l'output verso lo zero, **comportamento da evitare!**, è necessario un certo gain per mitigare tale effetto !  
 
-* esempio 3, gain = 3 (gain molto alto!)
+#### Esempio 3, gain = 3 (gain molto alto!)
 ![hist3](../../images/forward3.png)  
 
 Alta saturazione per tutti i layer! **comportamento da evitare!**

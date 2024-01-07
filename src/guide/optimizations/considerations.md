@@ -4,7 +4,7 @@
 Quando abbiamo una rete neurale di più layer lineari sovrapposti, e **non** usiamo alcuna **non-linearità** nelle **funzioni di attivazione**,
 il **gain** influenza la rete nel seguente modo:
 
-#### esempio 1, gain = 0.5 (gain basso)
+#### Esempio 1, gain = 0.5 (gain basso)
 ![hist1](../../images/forward11.png)  
 
 restringe gli output verso lo zero. **Comportamento da evitare!**
@@ -15,7 +15,7 @@ restringe gli output verso lo zero. **Comportamento da evitare!**
 inoltre, rende i gradienti dei layer interni sempre più espansi, diffondendoli. **Comportamento da evitare!**
  
 
-#### esempio 2, gain = 3 (gain alto)
+#### Esempio 2, gain = 3 (gain alto)
 ![hist2](../../images/forward12.png) 
 
 manda in **saturazione** il mondo! **Comportamento da evitare!**
@@ -25,7 +25,7 @@ manda in **saturazione** il mondo! **Comportamento da evitare!**
 e, di conseguenza, rende tutti i gradienti pari a zero.  **Comportamento da evitare!**  
 
 
-#### esempio 3, gain = 1 (no gain)
+#### Esempio 3, gain = 1 (no gain)
 
 ![hist3](../../images/forward13.png) 
 

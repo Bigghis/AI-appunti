@@ -25,7 +25,7 @@ plt.legend(legends)
 plt.title('weights gradient distribution');
 ```
 
-* esempio 1, gain = 5/3 (gain alto)
+#### esempio 1, gain = 5/3 (gain alto)
 ![hist2](../../images/data11.png) 
 
 Si notano bassi valori del gradient to data ratio e forma degli output sostanzialmente corretta. Per l'esame grafico valgono le stesse considerazioni viste sui 
