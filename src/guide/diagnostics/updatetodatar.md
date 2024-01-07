@@ -47,13 +47,13 @@ Bisogna assicurarsi che i valori vadano stabilizzandosi nel tempo e che non sian
 è importante anche che i grafici dei vari layer siano simili.
 
 * esempio 1, learning_rate = 0.001 (lr basso)
-![hist1](../images/updatedataratio1.png)  
+![hist1](../../images/updatedataratio1.png)  
 Un grafico al di sotto di -3 indica che i parametri si stanno allenando lentamente, valore del learning rate basso, frena l'apprendimento della rete!  
 Nell'esempio si vedono update di 10.000 volte inferiori ai valori contenuti dentro p.data, le varazioni di p.data sono irrisorie.
 
 
 * esempio 2, learning_rate = 0.01 (lr corretto)
-![hist2](../images/updatedataratio2.png)  
+![hist2](../../images/updatedataratio2.png)  
 I valori sono tra -3 e -2.5, che è un intervallo accettabile.
 
 

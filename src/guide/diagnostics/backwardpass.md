@@ -20,16 +20,16 @@ plt.title('gradient distribution')
 ```
 #### Considerazioni
 * esempio 1, gain = 5/3
-![hist1](../images/gradients1.png)  
+![hist1](../../images/gradients1.png)  
 
 Si nota come tutti i layer producano, grossomodo, gli stessi gradienti, ben distribuiti.
 
 * esempio 2, gain = 0.5 (gain basso)
-![hist1](../images/gradients2.png)  
+![hist1](../../images/gradients2.png)  
 
 I gradienti tendono ad accumularsi verso lo zero! **Comportamento da evitare!**
 
 * esempio 3, gain = 3 (gain alto)
-![hist1](../images/gradients3.png)  
+![hist1](../../images/gradients3.png)  
 
 gradienti asimmetrici, soprattutto nei layer più interni, **Comportamento da evitare!**
