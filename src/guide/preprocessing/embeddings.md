@@ -49,7 +49,7 @@ Quindi, nell'esempio:
 
 
 #### Positional Encoding 
-In alcune reti, come per esempio quelle dotate di **self-attenction**, è necessario encodare in una tabella di embeddings, non solo i possibili caratteri in input (**token**), ma anche la **loro posizione**.  
+In alcune reti, come per esempio quelle dotate di **self-attention**, è necessario encodare in una tabella di embeddings, non solo i possibili caratteri in input (**token**), ma anche la **loro posizione**.  
 Quindi se abbiamo creato una tabella di Embeddings per i token (esempio fatto con pytorch, per semplificare):  
 ```py 
 import torch

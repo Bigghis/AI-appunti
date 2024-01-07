@@ -269,4 +269,4 @@ p = F.softmax(p, dim=-1) # con somma effettuata sull'ultima dimensione
 
 #### Broadcasting
 
-vedi makemore part 2 da minuto 28
+TODO:: vedi makemore part 2 da minuto 28

@@ -66,3 +66,4 @@
     - [Update to data-ratio statistics](guide/diagnostics/updatetodatar.md)
 -----------
 
+[Contributors](guide/misc/contributors.md)

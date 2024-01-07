@@ -261,7 +261,7 @@ se vogliamo calcolare **db**, consideriamo che
 
 c11 c12 c13 = a11 a12 a13 - b1   
 c21 c22 c23 = a21 a22 a23 - b2  
-c31 c22 c33 = a31 a32 a33 - b3  
+c31 c32 c33 = a31 a32 a33 - b3  
 
 es.: c32 = a32 - b3  
 Cioè la derivata di c32 rispetto ad a32 è **1**.  
