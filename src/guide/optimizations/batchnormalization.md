@@ -179,7 +179,6 @@ for i in range(max_steps):
   lossi.append(loss.log10().item())
 ```
 
-
 #### Side Effect di regolarizzazione
 Batch normalization introduce un **rumore stocastico** (aleatorio, casuale) durante il processo di training.
 Questo rumore aiuta a prevenire l'**overfitting**, migliorando le capacità del modello di generalizzare su dati non visti.  

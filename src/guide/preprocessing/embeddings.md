@@ -49,7 +49,14 @@ Quindi, nell'esempio:
 
 
 #### Positional Encoding 
-In alcune reti, come per esempio quelle dotate di **self-attention**, è necessario encodare in una tabella di embeddings, non solo i possibili caratteri in input (**token**), ma anche la **loro posizione**.  
+In alcune reti, come per esempio quelle dotate di **self-attention**, è necessario encodare non solo i possibili caratteri in input (**token**), ma anche la **loro posizione**.  
+I **logits** creati dalla rete sono in tensore di dimensioni (B, T, C), come di consueto.  
+All'interno della dimensione T abbiamo una informazione duplice: il token encodato in un vettore C e, appunto, la sua posizione.  
+
+es.: [34, 45, 65, 29]  
+ il token 45 è encodato nella 45esima riga della lookup table C e si trova in seconda posizione dentro la riga di T.  
+Per memorizzare il fatto che 45 si trova in seconda posizione, possiamo usare una ulteriore lookup table.  
+
 Quindi se abbiamo creato una tabella di Embeddings per i token (esempio fatto con pytorch, per semplificare):  
 ```py 
 import torch

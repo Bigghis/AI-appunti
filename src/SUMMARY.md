@@ -31,7 +31,6 @@
     - [mean squared error](guide/loss/mse.md)
     - [negative log likelihood loss](guide/loss/negativelog.md)
 
-
 # Activating Functions
 - [Activation function](guide/activationfunctions.md)
     - [tanh() class implementation](guide/tanhimpl.md)
@@ -43,6 +42,10 @@
 - [WaveNet, a convolutional NN](guide/nn/wavenet.md)
 - [GPT](guide/nn/gpt.md)
     - [Self Attention](guide/nn/attention.md)
+        - [Head Attention class implementation](guide/nn/headclass.md)
+    - [Feed-forward](guide/nn/feedforward.md)         
+    - [Transformer](guide/nn/transformer.md)       
+        - [GPT Implementation](guide/nn/gptimplmentation.md)    
 
 # Optimizating
 - [Optimizations](guide/optimizations/intro.md)
@@ -55,6 +58,12 @@
         - [Considerations](guide/optimizations/considerations.md)
     - [Batch Normalization](guide/optimizations/batchnormalization.md)
         - [Implementing BatchNorm Class](guide/optimizations/batchnormalizationclass.md)
+    
+    - [Optimize deep neural networks](guide/optimizationsdeepnnetwork/intro.md)
+
+# Regularizating
+- [Regularization](guide/regularizations/intro.md)
+    - [Dropout](guide/regularizations/dropout.md)
 
 # Diagnostic tools
 - [Diagnostic tools](guide/diagnostics/intro.md)

@@ -17,11 +17,11 @@ La dimensione del tensore **targets** è: [4, 8]
 
 
 Per Calcolare il valore del **loss** usiamo la solita **F.cross_entropy**, avendo accortezza 
-di modificare le dimensioni dei tensori, percché cross_entropy si aspetta dimensioni differenti da quelle attuali. (vedi documentazione di cross_entropy)
+di modificare le dimensioni dei tensori, perché cross_entropy si aspetta dimensioni differenti da quelle attuali (vedi documentazione di cross_entropy).
 
 
 Il metodo **generate** estrae il logit ottenuto per **idx**
-e ne calcola le probabilità con **softmax** per poi recuperare la distribuzione di probabilità **probs** [1, 65] per poi campionarne un solo elemento, che è il carattere predetto dalla rete neurale. Tale carattere viene accodato agli altri già trovati che comporranno l'intera stringa predetta lunga **max_new_tokens**.
+e ne calcola le probabilità con **softmax** per poi recuperare la distribuzione di probabilità **probs** [1, 65] e quindi campionarne un solo elemento, che è il carattere predetto dalla rete neurale. Tale carattere viene accodato agli altri già trovati che comporranno l'intera stringa predetta lunga **max_new_tokens**.
 
 ```py
 
@@ -100,7 +100,7 @@ for steps in range(1000):
 ```
 Con l'elaborazione in loop otterremo una discesa del loss.  
 
-#### Aggregazione dei dati in input tarmite calcolo della media.
+#### Aggregazione dei dati in input tramite calcolo della media.
 Consideriamo i dati in input nella matrice [B,T,C], Batch=4, Time=8, Channel=2.  
 Quindi i token sono disposti in una matrice [4, 8] e l'informazione riguardante ciascun token è codificata in 2 dimensioni.  
 Uno qualsiasi degli 8 token di una riga T del Batch non comunica in alcun modo con gli altri token 
@@ -108,7 +108,7 @@ della stessa riga.
 Potremmo pensare ad una semplice forma di comunicazione di un token n-esimo con tutti i token da 
 0 a n-1 della stesa riga. (non è possibile pensare ad una comuniazione con i token da n+1 in poi, in quanto sono token presenti nel futuro della sequenza, non nel passato).  
 Un token n-esimo può comunicare con i token [0, n-1] se calcoliamo la **media** dei token precedenti.  
-Prendiamo, cioè i **channels** del quinto, quarto, terzo etc elemento di T, ottenendo una sorta di **vettore delle funzionalità** che mostra le aggregazioni tra i token nel contesto corrente.  
+Prendiamo, cioè i **channels** del quinto, quarto, terzo, secondo e primo elemento di T, ottenendo una sorta di **vettore delle funzionalità** che mostra le aggregazioni tra i token nel contesto corrente.  
 Ovviamente il calcolo della media esclude altri importanti legami tra i token, come la disposizione spaziale degli stessi all'interno dell'embedding table, ma per ora ci accontentiamo:
 
 ```py
@@ -123,7 +123,7 @@ for b in range(B):
 
 # x_back_of_words.shape = [4, 8, 2]
 ```
-Per semplicità possiamo usare il prodotto di matrici e i tensori:
+Per semplicità possiamo usare il prodotto di matrici con i tensori:
 ```py
 
 a = torch.tril(torch.ones(3,3)) # crea un tensore "triangolo*
