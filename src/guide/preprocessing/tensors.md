@@ -1,8 +1,11 @@
 # Tensors
 
 Un tensore è un'**array n-dimensionale** di numeri scalari.  
-Un tensore ad una dimensione è anche detto **vettore**.  
-Un tensore a due dimensioni è anche detto **matrix**.  
+Un tensore ad una dimensione è anche detto **vettore**.  (rank 1)
+Un tensore a due dimensioni è anche detto **matrix**.  (rank 2)  
+
+Il **rank** è il numero di assi (o dimensioni) del tensore. Uno scalare ha rank 0.  
+Lo **shape** è la dimensione di ogni asse del tensore.  
 
 ```py
 # a scalar number 23, shape = []
@@ -208,7 +211,7 @@ torch.Size([2, 2, 1])
 
 Vengono moltiplicati gli elementi della riga del primo tensore per l'elemento corrispondente della colonna del secondo tensore. Poi i prodotti vengono sommati tra di loro.
 
-![hist1](../images/mm.png)  
+![hist1](../../images/mm.png)  
 Per effettuare la moltiplicazione tra 2 tensori è fondamentale che 
 l'ultima dimensione del primo tensore sia **uguale** alla prima dimensione del secondo tensore!  
 
@@ -231,8 +234,12 @@ c = a @ b
 # c = [16, 11],
 #     [40, 44],
 #     [64, 77]
-# dove: 16 = (0*0) + (1*0) + (2*8)
+# dove: 
+# 16 = (0*0) + (1*0) + (2*8)
+# 11 = (0*4) + (1*3) + (2*4)
+
 # 40 = (3*0) + (4*0) + (5*8) 
+# 44 = (3*4) + (4*3) + (5*4)
 # etc etc
 ```
 
@@ -244,6 +251,8 @@ torch.randn(4, 5, 80) @ torch.randn(80, 200) = torch.Size([4, 5, 200])
 torch.randn(4, 5, 3, 80) @ torch.randn(80, 200) = torch.Size([4, 5, 3, 200])
 torch.randn(4, 5, 3, 6, 80) @ torch.randn(80, 200) = torch.Size([4, 5, 3, 6, 200])
 ```  
+Esiste un bel sito che spiega graficamente come viene fatta la moltiplicazione tra matrici: [http://matrixmultiplication.xyz/](http://matrixmultiplication.xyz/)
+
 
 #### Softmax di una matrice
 Questa operazione viene usata per normalizzare i valori di una matrice.  
@@ -269,4 +278,18 @@ p = F.softmax(p, dim=-1) # con somma effettuata sull'ultima dimensione
 
 #### Broadcasting
 
-TODO:: vedi makemore part 2 da minuto 28
+Immaginiamo di voler effettuare la sottrazione tra due tensori, di forme differenti.  
+
+```py
+# a.shape = [1000, 28, 28]
+# b.shape = [1]
+
+c = a - b 
+# c.shape = [1000, 28, 28]
+```
+
+pytorch replica l'unica riga presente nel tensore b, espandendolo, e permettendo di fare la sottrazione per ogni riga di **a** con l'unica riga di **b**.  
+Questo effetto di espandere il tensore di **rank** inferiore, per adattarlo al tensore di **rank** superiore è detto **broadcasting**.  
+Per effettuare il broadcasting è indispensabile che uno dei due tensori abbia un **rank almeno pari a 1**.  
+
+

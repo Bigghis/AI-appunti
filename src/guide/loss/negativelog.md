@@ -21,7 +21,7 @@ probs = counts / counts.sum(1, keepdims=True) # probabilities for next character
 loss = -probs[torch.arange(num), ys].log().mean()
 ```
 
-In realtà, per problemi legati ai calcoli, quali overflow etc., si utilizza una funzione già presente in pytorch:
+In realtà, per problemi legati ai calcoli, quali overflow etc., si utilizza la funzione **cross_entropy()** già presente in pytorch:
 
 ```py
 import torch.nn.functional as F

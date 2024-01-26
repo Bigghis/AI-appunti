@@ -9,6 +9,7 @@
     - [Gradients and Backpropagation](guide/derivatives.md)
         - [Implementing Backpropagation](guide/backpropagationexample.md)
         - [Implementing Vectoring Calcs](guide/backpropagationexample1.md)
+        - [Pytorch Gradients Calcs](guide/pytorchcalcs.md)
     - [Probability](guide/probabaility.md)
     - [Sampling](guide/sampling.md)
 - [Neural Networks](guide/nn.md)

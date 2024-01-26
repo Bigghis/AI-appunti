@@ -57,3 +57,16 @@ Xte, Yte = build_dataset(words[n2:])     # test set 10%
 Addestrando la rete prima con (Xtr, Ytr), poi con (Xdev, Ydev)
 se si ottengono risultati soddisfacenti e valori compatibili della funzione di perdita, significa 
 che la rete si comporta bene (**underfitting**)
+
+
+#### Considerazioni
+Bisogna ricordare che il **validation set** ed il **test set** rappresentano i dati che la rete vedrà in futuro, in produzione.  
+Dovrebbero rispecchiare il più possibile questa prerogativa, perciò non è sempre corretto usare un metodo random per suddividere i 3 set di dati, ma
+dipende dalla tipologia di rete.  
+Se abbiamo una rete **NLP (Natural Language Processing)** può andar bene, ma se abbiamo, per esempio, 
+una rete che si addestra su immagini di persone che guidano un auto, per trovare posizioni e comportamenti scorretti di guida, è meglio usare 
+immagini di persone che non sono presenti all'interno dell'intero set del training set. Difatti in produzione, la rete valuterà immagini di persone a lei 
+completamente sconosciute.  
+Viceversa, nella generazione di testo, le parole da cui la rete inferisce, quando le scriviamo delle domende, sono grossomodo le stesse che ha appreso 
+durante il training.  
+

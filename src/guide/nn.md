@@ -1,9 +1,12 @@
 # Neural Networks
 
 Una rete neurale è un'insieme di **espressioni matematiche**.  
-Questo insieme di espressioni prende in input dei dati (pesi, parametri etc.) ed esegue su tali dati delle elaborazioni dette **passaggio in avanti (forward)**,
+Questo insieme di espressioni prende in input dei numeri (pesi, parametri etc.) ed esegue su tali numeri delle elaborazioni dette **passaggio in avanti (forward)**,
 trasformandoli in output.  
 Tra questo insieme di espressioni si trova anche una **funzione di perdita**.  
+All'interno di una rete neurale ci sono moltissimi valori numerici, ma sono riconducibili in due sole categorie:  
+* **Numeri calcolati** (dentro i layer lineari e non lineari)  
+* **Parametri della rete** che sono, per esempio, inizializzati randomicamente e poi vengono ottimizzati. Sono i numeri che definiscono il **modello**.  
 
 
 
