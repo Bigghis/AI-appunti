@@ -64,6 +64,7 @@
 
 # Regularizating
 - [Regularization](guide/regularizations/intro.md)
+    - [Weight Decay](guide/regularizations/weightdecay.md)
     - [Dropout](guide/regularizations/dropout.md)
 
 # Diagnostic tools

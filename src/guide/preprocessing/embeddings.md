@@ -101,4 +101,12 @@ class BigramLanguageModel(nn.Module):
         logits = x
 ```
 
+## Considerazioni
+Nella pratica, possiamo anche definire il concetto dell'embeddings, come il ricercare un elemento all'interno di un'array.  
+Tale ricerca non è altro che moltiplicare il contenuto dell'array per un altro array encodato one-hot.  
+E', quindi, una moltiplicazione tra matrici.  
+
+
+
+
 

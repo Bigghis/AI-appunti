@@ -26,3 +26,9 @@ I del loss vengono ottenuti attraverso alcune funzioni ben gestibili,
 errore quadratico medio, negative log likelihood loss, etc. etc.
 
 
+### Considerazioni
+Se ponessimo tutti i pesi della rete a 0, avremmo loss function pari a 0, cioè il più basso valore possibile.  
+Purtroppo rendere nulli i pesi equivale al fatto che la rete non può apprendere nulla.  
+Ecco perché va cercato un giusto equilibrio nella valorizzazione dei pesi, non rendendoli nulli e né aumentandoli troppo.  
+Il loro aumento ecccessivo può produrre overfitting e va contrastato con tecniche di **regolarizzazione**, per esempio tramite **weight decay**.
+
