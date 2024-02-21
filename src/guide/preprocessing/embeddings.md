@@ -8,6 +8,7 @@ Quel punto rappresenta il carattere codificato.
 
 Creiamo una **lookup table** o tabella di codifica, con 27 elementi, ogni elemento è un'array [x,y] che codifica un carattere
 dell'alfabeto.  
+Avremo quindi una tabella d i27 righe e ogni riga contiene parametri addestrabili tramite una rete neurale.  
 All'inizio i valori delle coordinate x, y della lookup table saranno casuali e compresi tra 0 e 1.
 
 ```py
