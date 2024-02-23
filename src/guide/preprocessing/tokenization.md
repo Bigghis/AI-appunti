@@ -21,14 +21,15 @@ Chiaramente se utilizzo vocabolari molto grandi, con tanti token diversi, posso 
 sequenze di interi del testo encodato più piccole, un pò come nella compressione dei files, viceversa, con vocabolari piccoli, cresce la dimensione dei testi encodati.  
 
 ## Tokenization nei LLM
-In realtà si usa convertire **chunks** di caratteri in interi, al posto dei singoli caratteri.  
+In realtà, al posto dei singoli caratteri, si usa convertire **chunks** di caratteri in interi.  
 
-Possiamo considerare un **token** come ad un atomo, un'unità minima di informazione per un LLM.  
+Possiamo considerare un **token** come un atomo, un'unità minima di informazione per un LLM.  
 
 GPT2, ad esempio, ha un vocabolario di circa 50k tokens e la dimensione di contesto dell'input layer del transformer usato dal modello è di 1024 tokens. Vuol dire che ogni token, all'interno del contesto, pone attenzione ai token precedenti e l'ultimo token del contesto riesce a porre attenzione fino a 1023 token che lo precedono nella riga di contesto.  
 In GPT4 il vacabolario dei tokens e circa 100k, che vuol dire avere una dimensione dei testi encodati più piccola in input.  
-Questo è vantaggioso perché un token, all'interno del contesto, riesce a porre attenzione a circa il doppio del numero dei token di GPT2, per la stessa grandezza del **contesto di input**. Avremo, cioè, un input molto più **denso** per il transformer di GPT4.  
-Tenendo presente la mole di dati in input, di lingue diverse, corrispondente a testo preso da internet, è chiaro che se abbiamo maggioranza di testi in una lingua specifica, questa risulterà privilegiata ed il transformer lavorerà meglio con tale lingua, perché avendo più dati a disposizione, quindi più token, che corrispondono a codifiche più brevi e a maggior numero di token attenzionati per la stessa lunghezza di contesto.  
+Questo è vantaggioso perché un token, all'interno del contesto, riesce a porre attenzione a circa il doppio del numero dei token di GPT2, per la stessa grandezza del **contesto di input** che è sempre 1024.  
+Avremo, cioè, un input molto più **denso** per il transformer di GPT4.  
+Tenendo presente la mole di dati in input, di lingue diverse, corrispondente a testo preso da internet, è chiaro che se abbiamo maggioranza di testi in una lingua specifica, questa risulterà privilegiata ed il transformer lavorerà meglio con tale lingua, perché avendo più dati a disposizione, avremo più token, che corrispondono a codifiche più brevi e a maggior numero di token attenzionati per la stessa lunghezza di contesto.  
 E' ragionevole pensare che la maggior parte dei testi presenti in internet, su cui viene allenato un LLM, siano in lingua inglese. Conseguentemente il LLM produce predizioni più accurate in lingua inglese rispetto ad altre lingue.  
 
 Bisogna ricordare che in output del transformer viene applicata una decodifica per trasformare i token numerici in testo e,    
@@ -205,7 +206,7 @@ print(decode([128]))
 ```
 
 **Errori di decodifica**: non tutti i numeri nel range [0, 256] sono effettivamente codificabili in utf-8!  
-A causa della struttura di codifica (max 4 bytes, ognuno deve iniziare con "1"), es.: il numero 128 dà errore, perché non è codificabile in 4 bytes, secondo lo standard utf-8. 
+A causa della struttura di codifica (max 4 bytes, ognuno deve iniziare con "1"), es.: il numero 128 dà errore, perché non è codificabile in 4 bytes, secondo lo standard utf-8.  
 Il parametro **errors="replace"** assicura che, in caso di codifiche errate, non venga sollevata eccezione e che il numero da decodificare venga sostituito con un carattere speciale (**special marker**).  
 
 
