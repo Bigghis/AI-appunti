@@ -26,6 +26,8 @@
         - [Data Chunks](guide/preprocessing/chunk.md)
     - [Flatten input data](guide/preprocessing/flatten.md)    
     - [Tokenization](guide/preprocessing/tokenization.md)
+        - [TikToken](guide/preprocessing/tiktoken.md)
+        - [Sentencepiece](guide/preprocessing/sentencePieces.md)
 
 # Loss Functions
 - [Output Loss Functions](guide/loss/intro.md)

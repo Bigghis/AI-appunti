@@ -1,7 +1,7 @@
 # String Tokenization
 
 Conversione di un testo, che è una sequenza di caratteri, in una sequenza di numeri interi e viceversa.  
-Per riferimento della conversione viene usato un **vocabolario di tokens, o lookup table** per esempio i caratteri dell'alfabeto, oppure tutti i caratteri tipografici presenti in un testo, presi una sola volta:  
+Per riferimento della conversione viene usato un **vocabolario di tokens, o lookup table** contenente per esempio i caratteri dell'alfabeto, oppure le parole o sottostringhe del testo, prese una sola volta:  
 ```py
 # here are all the unique characters that occur in this text
 chars = sorted(list(set(text))) # vocabulary
@@ -66,9 +66,9 @@ list('요'.encode('utf-8')) # [236, 154, 148] sequenza di 3 bytes, perché ord('
 # encoding in utf-8 della stringa:
 list("안녕하세요 👋 (hello in Korean!)".encode("utf-8")) # [236, 139, 154,...]
 ```
-### Byte pair encoding
+### Byte Pair Encoding (BPE)
 E' un [Algoritmo](https://en.wikipedia.org/wiki/Byte_pair_encoding) usato per comprimere **le coppie di due caratteri** (pair) che compaiono più frequentemente in una stringa.  La ricerca viene fatta iterativamente per trovare la coppia in assoluto più frequente che viene sostituita con un carattere (token che verrà aggiunto al vocabolario di tokens), per poi cercare di nuovo la nuova coppia più frequente, sostituirla con un nuovo token e così via.  
-Di fatto viene creato un **tokenizzatore** di testi.  
+Di fatto viene creato un **tokenizzatore** di testi ed **il suo compito è creare un vocabolario di token**.
 
 Esempio:  
 aaabdaaabac --> coppia più frequente 'aa' --> codificata con token 'Z'  
@@ -88,7 +88,7 @@ Tale algoritmo, eseguito su un testo di input, compie quello che possiamo consid
 Implementiamo l'algoritmo in python:
 
 ```py
-# funzione che trova coppia più frequente
+# funzione che trova la coppia più frequente
 def get_stats(ids):
     counts = {}
     for pair in zip(ids, ids[1:]):
@@ -169,7 +169,19 @@ Il suo addestramento, difatti, serve per creare i token che comporranno il **voc
 Nel codice di esempio si nota l'effetto di compressione (1.27X) sui dati di input, dopo 20 iterazioni.  
 Siamo passati da 24k token a 19k!  
 Ovviamente, di conseguenza, sarà cresciuto il numero di token all'interno del nostro vocabolario dei token!  
-Il vocabolario dei token verrà utilizzato durante la fase di decodifica dell'output numerico generato dal transformer, per convertirlo in testo (**decoding**).
+Il vocabolario dei token verrà utilizzato durante la fase di decodifica dell'output numerico generato dal transformer, per convertirlo in testo (**decoding**).  
+
+Il vocabolario dei token è un **dict** che contiene come keys le coppie di caratteri encodate in utf-8 e come values i token effettivamente associati a tali coppie.
+```py
+# esempio:
+merges ={
+  (101, 32): 256,
+  (105, 110): 257,
+  (115, 32): 258,
+  (116, 104): 259,
+  ...
+ }
+```
 
 ### Decoding
 Usando il vocabolario dei token possiamo decodificare la lista dei numeri ottenuta in **binary string utf-8**, da cui, poi, otterremo il **testo, decodificando l'utf-8**:
@@ -190,7 +202,7 @@ s_binary = b"".join(vocab[x] for x in s)
 text = s_binary.decode("utf-8") # text = "prova"
 ```
 
-quindi, nello specifico del tokenizzatore che stiamo considerando, creiamo la logica di decodifica:  
+quindi, per lo specifico tokenizzatore che stiamo costruendo, creiamo la logica di decodifica:  
 ```py
 vocab = {idx: bytes([idx]) for idx in range(256)}
 for (p0, p1), idx in merges.items():
@@ -205,17 +217,66 @@ def decode(ids):
 print(decode([128]))
 ```
 
-**Errori di decodifica**: non tutti i numeri nel range [0, 256] sono effettivamente codificabili in utf-8!  
-A causa della struttura di codifica (max 4 bytes, ognuno deve iniziare con "1"), es.: il numero 128 dà errore, perché non è codificabile in 4 bytes, secondo lo standard utf-8.  
+NOTA: **Errori di decodifica**! Non tutti i numeri nel range [0, 256] sono codificabili in utf-8.  
+A causa della struttura di codifica (ogni byte deve iniziare con "1", per 4 bytes massimi), es.: il numero 128 dà errore, perché non è codificabile in 4 bytes.  
 Il parametro **errors="replace"** assicura che, in caso di codifiche errate, non venga sollevata eccezione e che il numero da decodificare venga sostituito con un carattere speciale (**special marker**).  
 
 
 
+### Encoding di testi usando il vocabolario dei token
+Una volta che abbiamo creato un vocabolario di token possiamo encodare qualsiasi testo, usando i token del vocabolario.
 
+```py
+def encode(text):
+  # given a string, return list of tokens
+  tokens = list(text.encode("utf-8")) # trasforma il testo in lista di interi tra 0 e 256
+  while len(tokens) >= 2: # encoding per coppie di caratteri
+    stats = get_stats(tokens) # cerca la coppia di caratteri più frequente
+    pair = min(stats, key=lambda p: merges.get(p, float("inf"))) # sostituisce la coppia con il token trovato dentro merges, che è il vocabolario dei token
+    if pair not in merges:
+      break # null'altro può essere mergiato, esce dal ciclo
+    idx = merges[pair]
+    tokens = merge(tokens, pair, idx)
+  return tokens
 
+print(decode(encode("hello world"))) # se encodo e poi decodifico, ottengo il testo di partenza, ovviamente
+# hello world
+```
 
+### Splitting del testo
+Nei testi esistono delle parole uguali usate in posti diversi all'interno di una frase.  
 
+* Esempio: "dog,", "dog.", "dog!"
 
+Queste tre parole sono seguite da punteggiatura differente e sarebbe poco corretto crearne un unico token per tutte e tre.  
+Per questo ed altri casi simili, è utile splittare il testo in parole piu corte, prima di inviarlo al tokenizzatore
 
+Viene creata una regola che comprende varie casistiche in base alle quali splittare i testi.
 
+Esempio: 
+```py
+import regex as re 
 
+pat = re.compile(r"""'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+""")
+
+print(re.findall(pat, "Hello world! How are you?"))
+['Hello', ' world', '!', ' How', ' are', ' you', '?']
+```
+Dall'esempio si vede come gli spazi non vengono considerati come una stringa a parte e che la punteggiatura viene tenuta separata.
+Il tokenizzatore riceverà in input la lista del testo splittato e partirà da quella per creare il vocabolario dei token.  
+
+GPT2 utilizza proprio la regex dell'esempio per processare i testi e poi mandarli in input al tokenizzatore TikToken:
+
+dai sorgenti di GPT2:
+```py
+import regex as re 
+
+self.pat = re.compile(r"""'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+""")
+
+def encode(self, text):
+    bpe_tokens = []
+    for token in re.findall(self.pat, text):
+        token = ''.join(self.byte_encoder[b] for b in token.encode('utf-8'))
+        bpe_tokens.extend(self.encoder[bpe_token] for bpe_token in self.bpe(token).split(' '))
+    return bpe_tokens
+```
