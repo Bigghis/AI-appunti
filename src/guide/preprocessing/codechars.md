@@ -1,4 +1,6 @@
-# Codifica dei caratteri in input
+# Characters and texts
+
+## Codifica dei caratteri in input
 
 Immaginando di avere il modello **n-gram** , che sulla base di un set di sillabe in input, predice il carattere successivo
 Es.: per n = 2 bigram, 3 trigram etc. etc...  

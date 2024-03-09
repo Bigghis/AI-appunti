@@ -17,10 +17,11 @@
 
 # Data Preprocessing
 - [Preprocessing Input Data](guide/preprocessing/preprocessing.md)    
-    - [Codifica dei caratteri in input](guide/preprocessing/codechars.md)
+    - [Characters and texts](guide/preprocessing/codechars.md)
         - [Codifica One Hot](guide/preprocessing/one_hot.md)
         - [Embeddings](guide/preprocessing/embeddings.md)
             - [Embeddings class implementation](guide/preprocessing/embeddingsclass.md)
+    - [Images](guide/preprocessing/images.md)
     - [Splitting Dataset](guide/preprocessing/splitting.md)
         - [Data Batch](guide/preprocessing/batch.md)
         - [Data Chunks](guide/preprocessing/chunk.md)
@@ -45,12 +46,17 @@
 - [Convolution](guide/nn/convolution.md)
     - [MNIST CNN implementation](guide/nn/mnisttorch.md)    
     - [WaveNet, a convolutional NN](guide/nn/wavenet.md)
+
+# Generative AI
 - [GPT](guide/nn/gpt.md)
     - [Self Attention](guide/nn/attention.md)
         - [Head Attention class implementation](guide/nn/headclass.md)
     - [Feed-forward](guide/nn/feedforward.md)         
     - [Transformer](guide/nn/transformer.md)       
-        - [GPT Implementation](guide/nn/gptimplmentation.md)    
+        - [GPT Implementation](guide/nn/gptimplmentation.md)
+
+
+- [Stable Diffusion](guide/stablediffusion/sd.md)
 
 # Optimizating
 - [Optimizations](guide/optimizations/intro.md)
