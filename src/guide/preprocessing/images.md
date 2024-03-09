@@ -2,7 +2,7 @@
 
 Un'immagine può essere rappresentata da informazioni numeriche (**pixel**), disposte su una griglia di una
 certa **altezza** e **larghezza**.  
-La griglia può essere in 2 dimensioni (immagini in bianco e nero), oppure in 3 dimensioni per immagini a colori, oppure, ancora, in 4 dimensioni, nel caso dei **video**.  
+La griglia può essere in 2 dimensioni per immagini in bianco e nero, oppure in 3 dimensioni per immagini a colori, oppure, ancora, in 4 dimensioni, nel caso dei **video**.  
 
 Un'immagine a colori è quindi rappresentata tramite un **tensore di rank 3**, con:  
 
@@ -32,7 +32,7 @@ Vediamone una molto interessante:
 E' possibile comprimere un'immagine, senza perdere informazione ivi associate, sfruttando la  [convoluzione](/guide/nn/convolution.md).  
 Ricordiamo, infatti, che applicando un kernel di **stride 2** riusciamo a dimezzare le dimensioni (H, W) del layer immagine, raddoppiando il numero di channels C.  
 
-Applichiamo una convoluzione di stride 2 diverse volte, su un'immagine iniziale di 3 x 512 x 512 = 786432 pixel totali, raddoppiando ogni volta il numero di channels e, solo nell'ultimo passaggio riducendo a 4 il numero dei channels:
+Applichiamo una convoluzione di stride 2 diverse volte, su un'immagine iniziale di 3 x 512 x 512 = 786432 pixel totali, raddoppiando ogni volta il numero di channels e, solo nell'ultimo passaggio, riducendoli a 4:
 
 ![Convolution encoder](../../images/convolution2.png)
 
