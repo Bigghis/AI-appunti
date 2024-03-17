@@ -50,7 +50,7 @@ il latent in output verrà decompresso attraverso un **VAE decoder**.
 ![sd3](../../images/sd3.png)
 
 
-## CLIP 
+## CLIP - Contrastive Language-Image Pre-Training
 
 Nella realtà, inoltre, usiamo istruire il modello dando in input dei prompt di testo come **guidance**.  
 Si sfrutta un modello di **embedding** che prende in input dei testi e restituisce dei vettori numerici in output, che verranno usati come guida per la generazione di immagini da parte di Stable Diffusion.  
@@ -67,9 +67,9 @@ tale relazione viene creata effettuando dei **dot product** tra i vettori corris
 ![sd5](../../images/sd5.png)  
 Le massime correlazioni tra prompt ed immagini si trovano lungo la diagonale verde, ovviamente.  
 Prompt simili a "cane", come: "un cane carino", "un cane marrone" etc.. danno sempre un dot product alto quando calcolato con l'immagine raffigurante il cane, 
-perché i valori degli embeddings sono simili, mentre danno valori bassi per i prodotti con le altre immagini, che hanno ebeddings molto diversi.  
+perché i valori degli embeddings sono simili, mentre danno valori bassi per i prodotti con le altre immagini, che hanno embeddings molto diversi.  
 
-questo modello **multimodale** composto da text e img encoders è chiamato **CLIP** (Contrastive Language-Image Pre-Training).
+questo modello **multimodale** composto da text e img encoders è chiamato **CLIP (Contrastive Language-Image Pre-Training)**.
 
 
 Possiamo riassumere i componenti di stable diffusion in:  
@@ -80,7 +80,32 @@ Possiamo riassumere i componenti di stable diffusion in:
 ## Scheduler
 
 Il componente finale di stable diffusion è lo **scheduler**.  
-Quando effttuiamo **L'inferenza** del modello, cioè quando generiamo un'immagine in output a partire da rumore puro in ingresso,
+Quando effttuiamo **l'inferenza** del modello, cioè quando generiamo un'immagine in output a partire da rumore puro in ingresso,
 per eliminare il rumore e generare l'immagine il modello esegue dei passi in ciclo.  
 La pianificazione di tali passi e la loro gestione è fatta dallo scheduler.  
-Attualmente tale pianificazione viene vista come una sorta di lavoro svolto da un **ottimizzatore** come ADAM etc. ...
+Tale pianificazione può anche essere vista come una sorta di lavoro svolto da un **ottimizzatore** come ADAM etc. ...
+
+
+## Stable Diffusion pipeline
+
+Stable Diffusion, in conclusione, è formato dai seguenti componenti:
+
+![sd7](../../images/sd7.png)
+
+La pipeline è versatile, i componenti possono essere sostituiti con altri facenti simili funzioni.  
+Sono presenti moltissimi parametri per gestire gli output.  
+
+E' possibile generare immagini a partire da:  
+
+* prompt di testo
+* immagine iniziale, invece del rumore random
+* immagine iniziale + prompt di testo
+* immagine iniziale + **negative prompt** che rimuove parti dell'immagine iniziale
+* fine tuning con token personalizzati
+* ... e molto altro
+
+## Training
+
+Durante il training di stable diffusion prendiamo un'immagine, aggiungiamo un layer di rumore al di sopra di essa e vogliamo che il modello predica tale rumore.  
+Se aggiungiamo troppo rumore il modello non riuscirà a distinguere l'immagine in input, se ne aggiungiamo poco non funzionerà lo stesso.  
+Perciò si aggiunge una quantità casuale e variabile di rumore, secondo una certa **distribuzione di probabilità**.  
