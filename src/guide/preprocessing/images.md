@@ -24,12 +24,12 @@ La rappresentazione di questa immagine comporta l'utilizzo di C x H x W valori =
 ## Compressione di immagini 
 
 Esistono anche altri modi più efficienti per rappresentare un'immagine, che usano meno **bytes**.  
-Alcuni tipi di compressione non comportano perdite d'informazioni relative all'immagine!  
+Alcuni tipi di compressione non comportano significative perdite d'informazioni relative all'immagine!  
 Vediamone una molto interessante: 
 
 ### Variational Autoencoding (VAE)
 
-E' possibile comprimere un'immagine, senza perdere informazione ivi associate, sfruttando la  [convoluzione](/guide/nn/convolution.md).  
+E' possibile comprimere un'immagine sfruttando la  [convoluzione](/guide/nn/convolution.md).  
 Ricordiamo, infatti, che applicando un kernel di **stride 2** riusciamo a dimezzare le dimensioni (H, W) del layer immagine, raddoppiando il numero di channels C.  
 
 Applichiamo una convoluzione di stride 2 diverse volte, su un'immagine iniziale di 3 x 512 x 512 = 786432 pixel totali, raddoppiando ogni volta il numero di channels e, solo nell'ultimo passaggio, riducendoli a 4:

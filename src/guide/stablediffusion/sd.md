@@ -26,15 +26,15 @@ Quindi, di conseguenza, possiamo pensare che il modello preveda in output **quan
 Se c'è poco rumore avremo una cifra numerica, altrimenti no.  
 
 Quello che il modello cerca di fare è restituire in output la quantità di rumore presente in input,
-e applicando una **loss function MSE** tra rumore predetto e rumore in input, si riesce a capire di quanto
-il modello riesca a prevedere fedelmente le cifre numeriche e quindi a crearle.  
+e applicando una **loss function MSE** tra rumore predetto e rumore in input, si capisce di quanto
+il modello riesce a prevedere fedelmente le cifre numeriche e quindi a crearle.  
 Possiamo prendere le immagini del MNIST, applicare un layer di rumore random sopra di esse e istruire il modello con queste immagini composte, calcolare poi la loss function ed aggiornare i pesi del modello.  
 
 ## U-Net
 Una volta che il modello è addestrato, possiamo anche dare in input **solo rumore** ed il modello restituirà
-in output del rumore che allontana di molto l'ìmmagine in input dall'essere una cifra.  
+in output lo stesso rumore pulito in alcune parti, per far emergere alcuni tratti dell'immagine che si vuole ottenere.  
 Sottraendo tale output all'input, avremo qualche pixel che, in effetti, fa sembrare il nuovo input più simile ad un cifra numerica e in output avremo del nuovo rumore da sostituire all'input.  
-Effettuando questa procedura più volte, per sottrazione, ricaveremo un'immagine chiara di una cifra numerica!  
+Effettuando questa procedura più volte, per sottrazione, ricaveremo un'immagine sempre più chiara di una cifra numerica!  
 Un rete del genere è chiamata **U-Net** e sfrutta internamente la convoluzione.
 
 Qui è mostrato il suo funzionamento per sottrazione di rumore:
@@ -48,3 +48,39 @@ Il latent costituisce l'input della rete U-net che restituirà in output un nuov
 il latent in output verrà decompresso attraverso un **VAE decoder**.  
 
 ![sd3](../../images/sd3.png)
+
+
+## CLIP 
+
+Nella realtà, inoltre, usiamo istruire il modello dando in input dei prompt di testo come **guidance**.  
+Si sfrutta un modello di **embedding** che prende in input dei testi e restituisce dei vettori numerici in output, che verranno usati come guida per la generazione di immagini da parte di Stable Diffusion.  
+Il tutto funziona perché Stable Diffusion è stato istruito su milioni di immagini presenti in internet, gran parte delle quali è etichettata tramite il **tag** HTML per l'accessibilità.  
+
+Possiamo, quindi, creare un **TextEncoder** che prende i prompt di testo in ingresso e restituisce vettori numerici corrispondenti alle parole di tali prompt.  
+Possiamo anche creare un **ImgEncoder** che funziona come il text encoder, solo che prende in input i testi dei tag delle immagini e restituisce sempre vettori numerici di tali tag.
+
+![sd4](../../images/sd4.png)
+Posizioniamo gli embeddings del textencoder e dell'imgencoder nello stesso spazio, cioè nella stessa **tabella di embedding** che mette in relazione i prompt con le immagini,   
+tale relazione viene creata effettuando dei **dot product** tra i vettori corrispondenti nella tabella che verranno poi sommati in una **loss function** chiamata
+**Contrastive loss** 
+
+![sd5](../../images/sd5.png)  
+Le massime correlazioni tra prompt ed immagini si trovano lungo la diagonale verde, ovviamente.  
+Prompt simili a "cane", come: "un cane carino", "un cane marrone" etc.. danno sempre un dot product alto quando calcolato con l'immagine raffigurante il cane, 
+perché i valori degli embeddings sono simili, mentre danno valori bassi per i prodotti con le altre immagini, che hanno ebeddings molto diversi.  
+
+questo modello **multimodale** composto da text e img encoders è chiamato **CLIP** (Contrastive Language-Image Pre-Training).
+
+
+Possiamo riassumere i componenti di stable diffusion in:  
+
+![sd6](../../images/sd6.png)
+
+
+## Scheduler
+
+Il componente finale di stable diffusion è lo **scheduler**.  
+Quando effttuiamo **L'inferenza** del modello, cioè quando generiamo un'immagine in output a partire da rumore puro in ingresso,
+per eliminare il rumore e generare l'immagine il modello esegue dei passi in ciclo.  
+La pianificazione di tali passi e la loro gestione è fatta dallo scheduler.  
+Attualmente tale pianificazione viene vista come una sorta di lavoro svolto da un **ottimizzatore** come ADAM etc. ...
