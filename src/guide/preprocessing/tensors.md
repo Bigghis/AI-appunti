@@ -32,7 +32,7 @@ torch.tensor([
 
 
 #### funzioni di base utili
-```python
+```py
 t = torch.tensor([
     [ [2,3,4], [4,5,6] ],
     [ [7,8,9], [10, 12, 13] ],
@@ -86,8 +86,8 @@ t.view(18)
 tensor([ 2,  3,  4,  4,  5,  6,  7,  8,  9, 10, 12, 13, 14, 15, 18, 14, 22, 23])
 ```
 
-#### indici
-```python
+### indici
+```py
 t = torch.tensor([
         [[ 2,  3,  4],
          [ 4,  5,  6]],
@@ -134,8 +134,8 @@ t1[:-1]
 tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
 ```
 
-#### Operazioni
-```python
+### Operazioni
+```py
 t = torch.tensor([
     [
         [1, 2], 
@@ -254,7 +254,7 @@ torch.randn(4, 5, 3, 6, 80) @ torch.randn(80, 200) = torch.Size([4, 5, 3, 6, 200
 Esiste un bel sito che spiega graficamente come viene fatta la moltiplicazione tra matrici: [http://matrixmultiplication.xyz/](http://matrixmultiplication.xyz/)
 
 
-#### Softmax di una matrice
+### Softmax di una matrice
 Questa operazione viene usata per normalizzare i valori di una matrice.  
 Viene prima calcolato l'exp() di ogni elemento della matrice e poi viene effettuata 
 la divisione per la somma della riga di tale matrice.  
@@ -275,21 +275,4 @@ p = p / p.sum()
 p = F.softmax(p, dim=-1) # con somma effettuata sull'ultima dimensione 
 
 ```
-
-#### Broadcasting
-
-Immaginiamo di voler effettuare la sottrazione tra due tensori, di forme differenti.  
-
-```py
-# a.shape = [1000, 28, 28]
-# b.shape = [1]
-
-c = a - b 
-# c.shape = [1000, 28, 28]
-```
-
-pytorch replica l'unica riga presente nel tensore b, espandendolo, e permettendo di fare la sottrazione per ogni riga di **a** con l'unica riga di **b**.  
-Questo effetto di espandere il tensore di **rank** inferiore, per adattarlo al tensore di **rank** superiore è detto **broadcasting**.  
-Per effettuare il broadcasting è indispensabile che uno dei due tensori abbia un **rank almeno pari a 1**.  
-
 

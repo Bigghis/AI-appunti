@@ -6,6 +6,8 @@
 
 - [Maths](guide/maths.md)
     - [Tensors](guide/preprocessing/tensors.md)
+        - [Rank manipulations](guide/preprocessing/rankingmanipulations.md)
+        - [Broadcasting](guide/preprocessing/broadcasting.md)
     - [Gradients and Backpropagation](guide/derivatives.md)
         - [Implementing Backpropagation](guide/backpropagationexample.md)
         - [Implementing Vectoring Calcs](guide/backpropagationexample1.md)
