@@ -42,6 +42,7 @@
     - [tanh() class implementation](guide/tanhimpl.md)
 
 # Neural Networks
+- [PyTorch implementation](guide/nn/pytorchimplementation.md)
 - [MakeMore, a classifier NN](guide/nn/makemore.md)
     - [Linear Layer implementation](guide/nn/llclass.md)
     - [NN Implementation](guide/nn/nnimplementation.md)
