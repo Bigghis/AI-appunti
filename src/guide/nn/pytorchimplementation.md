@@ -23,7 +23,7 @@ class MLP(nn.Module):
 
 notiamo come nell'**__init__()** viene chiamato prima l'**__init__()** della superclasse, poi impostati i 3 layer e poi come viene reimplementata la **forward()**.
 
-instanziando la classe MLP, pytorch ci assicura l'accesso ai parametri della rete tramite il metodo **parameters()**
+instanziando la classe MLP pytorch ci assicura l'accesso ai parametri della rete tramite il metodo **parameters()**
 
 ```py
 model = MLP(n_in, nh, n_out)
@@ -161,3 +161,40 @@ class DataLoader():
 train_dataloader = DataLoader(train_dataset, bs)
 ```
 reimplementando la **iter**, creiamo un generator .... continue
+
+
+Il DataLoader fornito da pytorch permette di:  
+
+* creare batch di dati a partire da un dataset
+* randomizzare l'ordine dei batch ad ogni iterazione (shuffle)
+* elaborare (train e eval) più batch in parallelo
+
+
+Il DataLoader **DataLoader(data, collate_fn=collate_fn, batch_size=batch_size)** di pytorch si aspetta che **data** in input sia del tipo:
+
+* numeri
+* tensori
+* array (numpy)
+* list
+* dict
+
+Quindi, in caso **data** non abbia la forma di un input del tipo elencato, bisogna implementare una **collate function**, come negli esempi:
+
+```py
+# esempio che ritorna un batch di tipo dict
+def collate_fn(elem):
+    return {
+        'image': stack([TF.to_tensor(o['image']) for o in elem]),
+        'label': tensor([o['label'] for o in elem])
+    }
+
+# esempio che ritorna un batch di tipo list
+def collate_fn1(elem):
+    image = stack([TF.to_tensor(o['image']) for o in elem])
+    label  = tensor([o['label'] for o in elem])
+    return [image, label]
+```
+
+e passarla in argomento al DataLoader. Internamente verrà eseguito un **map()** applicando la **collate_fn** fornita per ogni elem di data.  
+
+Ovviamente la collate function deve ritornare neccessariamente un batch in una delle forme accettate dal DataLoader.
