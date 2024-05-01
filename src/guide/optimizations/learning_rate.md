@@ -1,8 +1,8 @@
 # Learning Rate
 
-Una volta trovato un intervallo "decente" per valori di learning rate, possiamo applicarlo nell'algoritmo del backpropagation:
+Scelto il valore del learning rate da usare, esso va applicato nell'algoritmo del backpropagation:
 
-es partiamo dal seguente algoritmo di backward
+es.: partiamo dal seguente algoritmo di backward
 ```py
 epoch = 100
 learning_rate = -0.001
@@ -27,8 +27,9 @@ for _ in range(epoch):
         p.data += -learning_rate * p.grad
 
 ```
+#### Aumento del learning rate
 
-Immaginando di voler considerare learning_rate nell'intervallo [0,0001, 1], possiamo creare tanti valori equidistanti tra loro 
+Immaginando di voler considerare learning_rate diversi nell'intervallo [0,0001, 1], possiamo creare tanti valori equidistanti tra loro 
 in quell'intervallo:
 
 ```py
@@ -41,9 +42,12 @@ in quell'intervallo:
  # learning_rates = tensor([0.1000, 0.1002, 0.1005, 0.1007, 0.1009, 0.1012, 0.1014, 0.1016, ..., 1.0000])
 
 ```
+Adesso applicando questi learning_rates all'algoritmo di backward faremo in modo che all'aumentare delle iterazioni per le epoch,
+difatto verranno usati learning rates **sempre più alti**.  
+Plottando in istogramma con asse delle ascisse i valori del learning rate ed in ordinate il loss, si nota subito il miglior valore di learning rate da usare.  
+Da come si nota nel grafico, una volta raggiunto un ottimale valore del learning rate è ragionevole **fermare il training** del modello, visto che dopo inizia ad aumentare il valore del loss!
 
-Adesso applicando  questi learning_rates all'algoritmo di backward avremo:
-
+![hist1](../../images/lr4.png) 
 
 ```py
 epoch = 10000
@@ -162,4 +166,4 @@ plt.plot(t.view(-1, 1000).mean(1))
 
 che mostra chiaramente l'effetto del learning rate:
 
-![hist1](../../images/lr_decay.png) 
+![hist2](../../images/lr_decay.png) 

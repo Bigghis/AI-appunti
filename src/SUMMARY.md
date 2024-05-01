@@ -65,6 +65,7 @@
 # Optimizating
 - [Optimizations](guide/optimizations/intro.md)
     - [Learning Rate](guide/optimizations/learning_rate.md)
+        - [Learning Rate Finder](guide/optimizations/learning_rate_finder.md)
     - [Tuning neurons size in layer](guide/optimizations/nnsize.md)
     - [Embedding vector scaling](guide/optimizations/embeddingscale.md)
     - [Fixing initial loss](guide/optimizations/initialloss.md)
