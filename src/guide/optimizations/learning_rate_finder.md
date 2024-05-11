@@ -40,9 +40,6 @@ learning_rates, losses = [], []
 min_learning_rate = 9999999 # inizializza min_learning_rate ad un valore molto alto
 max_mult = 1.3 #valore del moltiplicatore (30%)
 
-        self.sched = ExponentialLR(learn.opt, self.gamma)
-        self.lrs,self.losses = [],[]
-        self.min = math.inf
 for epoch in range(num_epochs):
     learning_rates.append(learning_rate) # memorizza il valore attuale del learning rate
     losses.append(loss) # memorizza il valore attuale del loss

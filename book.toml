@@ -6,7 +6,7 @@ src = "src"
 title = "AI appunti"
 
 [output.html]
-default-theme = "light"
+default-theme = "ayu"
 git-repository-url = ""
 
 [output.html.fold]
