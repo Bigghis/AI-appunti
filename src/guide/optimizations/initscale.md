@@ -43,12 +43,16 @@ Basta dividere i pesi per la radice quadrata del numero di elementi di input **f
 **fan_in = embedded_size * block_size**:
 
 ```py
-W = torch.randn(10, 200) / 10**0.5
+embedded_size = 2
+block_size = 5
 
-# otterremo:
+W = torch.randn(10, 200) / ((embedded_size * block_size)**0.5)
+
+# otterremo di nuovo media zero e std dev 1:
 print(y.mean(), y.std())
 # tensor(0.0044) tensor(1.0029)
 ```
+**gain / ((embedded_size * block_size)*\*0.5)** è anche detto **Xavier/Glorot init** dei pesi di input.  
 in pytorch possiamo usare funzioni già definite che fanno questo lavoro.
 
 #### Uniform distribution
@@ -112,9 +116,6 @@ block_size = 5
 W = torch.randn(10, 200) * (5/3) / ((embedded_size * block_size)**0.5)
 
 ```
-
-**gain / ((embedded_size * block_size)*\*0.5)** è anche detto **kaiming init** dei pesi di input, in caso di non linearità di tipo tanh(), nella funzione di attivazione.  
-
 Pytorch mette a disposizione la funzione **calculate_gain**, che determina il gain corretto da usare in base alla funzione di attivazione utilizzata:
 ```py
 # es.: per tanh:

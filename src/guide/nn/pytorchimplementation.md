@@ -198,3 +198,8 @@ def collate_fn1(elem):
 e passarla in argomento al DataLoader. Internamente verrà eseguito un **map()** applicando la **collate_fn** fornita per ogni elem di data.  
 
 Ovviamente la collate function deve ritornare neccessariamente un batch in una delle forme accettate dal DataLoader.
+
+
+IMPORTNTE: https://medium.com/@phiphatchomchit/lets-deploy-your-deep-learning-model-with-gradio-c7e5ceb4122f
+
+REVERSE :) interesting https://medium.com/@0ssamaak0/building-simple-handwritten-digits-generator-using-dcgan-and-gradio-96b5aace1eb2

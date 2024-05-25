@@ -78,5 +78,7 @@
 - [PyTorch implementation](guide/nn/pytorchimplementation.md)
     - [Training loop](guide/nn/training_loop.md)
     - [Learner Framework](guide/nn/learner_framework.md)
+        - [Callbacks examples](guide/nn/callbacks_examples.md)
+        - [Hooks](guide/nn/hooks.md)
 
 [Contributors](guide/misc/contributors.md)
