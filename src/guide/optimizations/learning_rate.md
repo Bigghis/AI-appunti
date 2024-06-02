@@ -27,6 +27,46 @@ for _ in range(epoch):
         p.data += -learning_rate * p.grad
 
 ```
+
+## Learning rate variabile (Scheduler)
+
+In genere usare un learning rate fisso è poco efficiente, dilata i tempi di training e non assicura una corretta discesa del gradiente.  
+E' stato sperimentato che usare learning rate **variabili** può risolvere questi problemi, ottimizzando i tempi di training e migliorando la discesa del gradiente, di fatto **aumentando le prestazioni di training del modello**.   
+Per questo in pytorch ci sono molti tipi di **scheduler** che adattano i valori del learning rate durante la discesa del gradiente **(SGD)** nel training loop.  
+
+Ricordando che durante il training loop viene usato un **optimizer** per aggiornare i pesi e che **il learning rate è un parametro dell'optimizer**,
+uno **scheduler** è un algoritmo che aggiorna il valore del learning rate all'interno dell'optimizer.  
+
+Es.: 
+```py
+import torch
+import torch.optim as optim
+import torch.optim.lr_scheduler as lr_scheduler
+
+scheduler = lr_scheduler.LinearLR(optimizer, start_factor=1.0, end_factor=0.3, total_iters=10)
+```
+Nota che uno scheduler pytorch prende l'optimizer come primo parametro.
+
+Esempio dell'andamento del valore del learning rate, gestito da uno scheduler:
+
+```py
+model = torch.nn.Linear(2, 1)
+optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
+scheduler = torch.optim.lr_scheduler.CyclicLR(optimizer, base_lr=0.001, max_lr=0.1,step_size_up=5,mode="triangular2")
+lrs = []
+
+for i in range(100):
+    optimizer.step()
+    lrs.append(optimizer.param_groups[0]["lr"])
+#     print("Factor = ",i," , Learning Rate = ",optimizer.param_groups[0]["lr"])
+    scheduler.step()
+
+plt.plot(lrs)
+```
+
+![hist0](../../images/scheduler0.png) 
+
+
 #### Aumento del learning rate
 
 Immaginando di voler considerare learning_rate diversi nell'intervallo [0,0001, 1], possiamo creare tanti valori equidistanti tra loro 
