@@ -1,6 +1,11 @@
 # Learning Rate
 
-Scelto il valore del learning rate da usare, esso va applicato nell'algoritmo del backpropagation:
+Trovare un giusto valore del learning rate non è un'operazione banale.  
+Un **learning rate troppo alto** può accelerare il training, ma il modello può superare i minimi e funzionerà male.  
+Di contro, un **learning rate troppo basso** renderà il training eccessivamente lento e il modello può rimanere
+bloccato in punti di minimo locali.  
+
+Immaginando, comunque, di aver scelto un valore del learning rate da usare, esso va applicato nell'algoritmo del backpropagation:
 
 es.: partiamo dal seguente algoritmo di backward
 ```py
@@ -27,6 +32,7 @@ for _ in range(epoch):
         p.data += -learning_rate * p.grad
 
 ```
+Generalmente il learning rate viene passato in argomento ad un **optimizer** che provvederà ad applicarlo all'interno della backpropagation.    
 
 ## Learning rate variabile (Scheduler)
 

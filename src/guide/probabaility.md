@@ -3,6 +3,10 @@
 #### Media Aritmetica
 Somma dei valori numerici diviso il numero di valori numerici considerati.
 
+#### Media Mobile
+La media mobile di un insieme è una serie di medie di vari sottoinsiemi dell'insieme completo.  
+In sostanza è la media calcolata per un intervallo minore di valori, rispetto al totale dei valori numerici considerati.
+
 
 #### Varianza
 E' una misura di dispersione,
