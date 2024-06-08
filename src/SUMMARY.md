@@ -52,6 +52,7 @@
     - [Optimizer](guide/optimizations/sgdoptimizations.md)
         - [SGD with momentum and RMSProp](guide/optimizations/sgd.md)
         - [ADAM](guide/optimizations/adamoptimizations.md)
+        - [Pytorch Optimizers and Schedulers Characteristics](guide/optimizations/pytorchoptims.md)
     - [Learning Rate](guide/optimizations/learning_rate.md)
         - [Learning Rate Finder](guide/optimizations/learning_rate.md)
     - [Tuning neurons size in layer](guide/optimizations/nnsize.md)
