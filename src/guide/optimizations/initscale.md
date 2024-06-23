@@ -2,18 +2,46 @@
 
 Un aspetto fondamentale per un corretto allenamento di una rete neurale è fornire dei valori in input corretti, durante la prima inizializzazione.  
 Le probabilità dei valori di input, all'inizio, dovrebbero seguire quanto più possibile una **distribuzione gaussiana**.  
-Vorremo, quindi ottenere una **media = 0** e una **deviazione standard = 1**.
+Vorremo avere una **media = 0** e una **deviazione standard = 1** per i dati in ingresso.
 
 Una rete neurale esegue, infatti, moltiplicazioni tra matrici e lo fa molte volte.  
-Se i valori da moltiplicare non si mantengono limitati, si incorre presto in numeri molto grandi e overflow.
-Perciò i pesi vanno tenuti entro i limiti di una distribuzione gaussiana uniforme.  
+Se i valori da moltiplicare non si mantengono limitati, si incorre presto in numeri molto grandi e overflow.  
+Perciò anche i pesi vanno tenuti entro i limiti di una distribuzione gaussiana uniforme.  
 
 **I pesi non possono essere troppo grandi, ma neanche troppo piccoli**, per non incorrere nel problema che possano azzerarsi
 durante le moltiplicazioni di matrici iterate più volte. 
 
 In aggiunta l'**effetto delle funzioni di attivazione** modifica la media e la varianza della distribuzione dei valori.  
 
+# Normalizzazione dei dati di input
 
+E' possibile provare a rettificare media e varianza dei dati di input presentati in batch calcolando media e varianza del primo mini batch
+e poi sottraendo tale media ai mini batch seguenti e dividendo per la varinza trovati all'inizio.  
+Se usiamo l'AI Framework possiamo applicare questi calcoli usando una classe Callback apposita
+
+```py
+train_dl = DataLoader(train_ds, batch_size=batch_size, num_workers=num_workers, collate_fn=collate_fn)
+# get a mini batch from the train dataloader
+b = next(iter(train_dl)) 
+
+# calculate mean and standard deviation of input data mini batch
+xmean,xstd = b[0].mean(), b[0].std()
+
+# create a function to apply means and stds to normalize input data batch
+from AIFramework.callbacks import BatchTransformCB
+from AIFramework import Learner
+
+def _norm(b):
+    return (b[0]-xmean) / xstd, b[1]
+
+normalize_input_batches = BatchTransformCB(_norm, print_means=True)
+
+# and then adds normalize_input_batches to the callbacks list of the learner:
+cbs = [get_device_cb('cuda'), normalize_input_batches, get_metrics_cb(), ...]
+learn = Learner(mod.apply(init_weights), dlsForConvolutional,  loss_func=F.cross_entropy, lr= 0.01, callbacks=cbs, opt_func=optim.AdamW)
+```
+
+# Normalizzazione dei pesi
 
 ## Xavier/Glorot scale 
 Per non far crescere troppo i valori dentro le matrici si possono inizializzare i pesi scalandoli per un certo fattore
