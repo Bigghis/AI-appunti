@@ -18,7 +18,7 @@ c = a + b
 pytorch replica l'unica riga presente nel tensore b, espandendolo, e permettendo di fare l'addizione per ogni riga di **a** con l'unica riga di **b**.  
 Questo effetto di espandere (**stretch**) il tensore di **rank** inferiore, per adattarlo al tensore di **rank** superiore è detto **broadcasting**.  
 
-#### Regole per il brodcasting
+## Regole per il broadcasting
 Per effettuare il broadcasting è indispensabile che uno dei due tensori abbia un **rank almeno pari a 1**.  
 Il broadcasting può essere effettuato tra due tensori di **dimensioni compatibili**:  
 Confrontando i due tensori partendo dall'ultima dimensione, due dimensioni sono compatibili quando è valida una delle regole:  
