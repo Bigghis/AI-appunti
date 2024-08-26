@@ -170,7 +170,7 @@ Il DataLoader fornito da pytorch permette di:
 * elaborare (train e eval) più batch in parallelo
 
 
-Il DataLoader **DataLoader(data, collate_fn=collate_fn, batch_size=batch_size)** di pytorch si aspetta che **data** in input sia del tipo:
+Il DataLoader **DataLoader(data, collate_fn=collate_fn, batch_size=batch_size)** di pytorch si aspetta che la variabile dipendente e la variabile indipendente dentro il batch **data** sia del tipo:
 
 * numeri
 * tensori
@@ -178,20 +178,22 @@ Il DataLoader **DataLoader(data, collate_fn=collate_fn, batch_size=batch_size)**
 * list
 * dict
 
-Quindi, in caso **data** non abbia la forma di un input del tipo elencato, bisogna implementare una **collate function**, come negli esempi:
+Quindi, in caso la variabile dipendente e la variabile indipendente dentro il batch **data** non abbiano la forma di un input del tipo elencato, bisogna implementare una **collate function**, come negli esempi:
 
 ```py
-# esempio che ritorna un batch di tipo dict
+# esempio che ritorna un batch di tipo dict e che ha al suo interno
+# tensori, che sono accettati dal dataloader
 def collate_fn(elem):
     return {
-        'image': stack([TF.to_tensor(o['image']) for o in elem]),
-        'label': tensor([o['label'] for o in elem])
+        'image': stack([TF.to_tensor(o['image']) for o in elem]), #variabile dipendente di tipo tensor
+        'label': tensor([o['label'] for o in elem])  # variabile indipendente di tipo tensor
     }
 
-# esempio che ritorna un batch di tipo list
+# esempio che ritorna un batch di tipo list e che ha al suo interno
+# tensori, che sono accettati dal dataloader
 def collate_fn1(elem):
-    image = stack([TF.to_tensor(o['image']) for o in elem])
-    label  = tensor([o['label'] for o in elem])
+    image = stack([TF.to_tensor(o['image']) for o in elem]) #variabile dipendente di tipo tensor
+    label  = tensor([o['label'] for o in elem]) #variabile dipendente di tipo tensor
     return [image, label]
 ```
 
